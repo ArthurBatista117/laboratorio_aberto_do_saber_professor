@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:laboratorio_aberto_do_saber_professor/pages/arquivos_professor.dart';
 import 'package:laboratorio_aberto_do_saber_professor/pages/cadastro.dart';
-import 'package:laboratorio_aberto_do_saber_professor/pages/home_page_autenticado.dart';
 import 'package:laboratorio_aberto_do_saber_professor/pages/ler_qrcode.dart';
 import 'package:laboratorio_aberto_do_saber_professor/pages/login.dart';
 import 'package:laboratorio_aberto_do_saber_professor/pages/notificacao.dart';
 import 'package:laboratorio_aberto_do_saber_professor/pages/sobre.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePageNaoLogado extends StatefulWidget {
+  const HomePageNaoLogado({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePageNaoLogado> createState() => _HomePageNaoLogadoState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageNaoLogadoState extends State<HomePageNaoLogado> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    HomeContent(),
+    HomeContentNaoAutenticado(),
     ArquivosPage(),
     SugestaoPage(),
     ContatoPage(),

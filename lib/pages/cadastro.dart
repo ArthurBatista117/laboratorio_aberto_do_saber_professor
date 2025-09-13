@@ -3,12 +3,6 @@ import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-var cpfMask = MaskTextInputFormatter(
-  mask: '###.###.###-##',
-  filter: {"#": RegExp(r'[0-9]')},
-  type: MaskAutoCompletionType.eager,
-);
-
 var telefoneMask = MaskTextInputFormatter(
   mask: '(##) #####-####',
   filter: {"#": RegExp(r'[0-9]')},
@@ -39,10 +33,10 @@ class _CadastroState extends State<Cadastro> {
         headers: {"Content-Type": "application/json"},
         body: jsonEncode({
           "nome": controllers["nome"]!.text,
-          "cpf": controllers["cpf"]!.text,
-          "telefone": controllers["telefone"]!.text,
           "email": controllers["email"]!.text,
           "senha": controllers["senha"]!.text,
+          "materia": controllers["senha"]!.text,
+          "telefone": controllers["telefone"]!.text,
         }),
       );
 
@@ -96,10 +90,10 @@ class _CadastroState extends State<Cadastro> {
 
   final Map<String, TextEditingController> controllers = {
     "nome": TextEditingController(),
-    "cpf": TextEditingController(),
-    "telefone": TextEditingController(),
     "email": TextEditingController(),
     "senha": TextEditingController(),
+    "telefone": TextEditingController(),
+    "materia": TextEditingController(),
   };
 
   @override
@@ -129,7 +123,9 @@ class _CadastroState extends State<Cadastro> {
         keyboardType: keyboardType,
         decoration: InputDecoration(
           labelText: label,
-          prefixIcon: prefixIcon != null ? Icon(prefixIcon, color: Colors.blue) : null,
+          prefixIcon: prefixIcon != null
+              ? Icon(prefixIcon, color: Colors.blue)
+              : null,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide(color: Colors.blue.shade300),
@@ -243,22 +239,6 @@ class _CadastroState extends State<Cadastro> {
                       ),
 
                       _buildTextField(
-                        key: "cpf",
-                        label: "CPF",
-                        prefixIcon: Icons.badge,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [cpfMask],
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Por favor digite seu CPF";
-                          } else if (value.length < 14) {
-                            return "CPF incompleto";
-                          }
-                          return null;
-                        },
-                      ),
-
-                      _buildTextField(
                         key: "email",
                         label: "E-mail",
                         prefixIcon: Icons.email,
@@ -267,8 +247,38 @@ class _CadastroState extends State<Cadastro> {
                           if (value == null || value.isEmpty) {
                             return 'E-mail é obrigatório';
                           }
-                          if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                          if (!RegExp(
+                            r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                          ).hasMatch(value)) {
                             return 'Digite um e-mail válido';
+                          }
+                          return null;
+                        },
+                      ),
+
+                      _buildTextField(
+                        key: "senha",
+                        label: "Senha",
+                        prefixIcon: Icons.lock,
+                        obscureText: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Digite uma senha';
+                          } else if (value.length < 6) {
+                            return 'Senha deve ter pelo menos 6 caracteres';
+                          }
+                          return null;
+                        },
+                      ),
+
+                      _buildTextField(
+                        key: "materia",
+                        label: "Matéria",
+                        prefixIcon: Icons.book,
+                        keyboardType: TextInputType.name,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Por favor digite sua matéria!";
                           }
                           return null;
                         },
@@ -290,32 +300,19 @@ class _CadastroState extends State<Cadastro> {
                         },
                       ),
 
-                      _buildTextField(
-                        key: "senha",
-                        label: "Senha",
-                        prefixIcon: Icons.lock,
-                        obscureText: true,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Digite uma senha';
-                          } else if (value.length < 6) {
-                            return 'Senha deve ter pelo menos 6 caracteres';
-                          }
-                          return null;
-                        },
-                      ),
-
                       SizedBox(height: 24),
 
                       // Botão de cadastro
                       SizedBox(
                         height: 56,
                         child: ElevatedButton(
-                          onPressed: _isLoading ? null : () async {
-                            if (_keyForm.currentState!.validate()) {
-                              await enviarCadastro(context);
-                            }
-                          },
+                          onPressed: _isLoading
+                              ? null
+                              : () async {
+                                  if (_keyForm.currentState!.validate()) {
+                                    await enviarCadastro(context);
+                                  }
+                                },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
                             foregroundColor: Colors.white,

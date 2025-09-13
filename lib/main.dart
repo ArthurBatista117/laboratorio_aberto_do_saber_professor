@@ -1,5 +1,6 @@
 import 'package:alarm/alarm.dart';
 import 'package:flutter/material.dart';
+import 'package:laboratorio_aberto_do_saber_professor/pages/home_page_autenticado.dart';
 import 'package:laboratorio_aberto_do_saber_professor/pages/home_page_nao_autenticado.dart';
 
 void main() async {

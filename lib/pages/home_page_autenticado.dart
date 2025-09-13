@@ -76,7 +76,9 @@ class _HomePageState extends State<HomePage> {
               icon: Container(
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: _selectedIndex == 0 ? Colors.blue.withValues(alpha: 0.1) : Colors.transparent,
+                  color: _selectedIndex == 0
+                      ? Colors.blue.withValues(alpha: 0.1)
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(Icons.home_outlined),
@@ -95,7 +97,9 @@ class _HomePageState extends State<HomePage> {
               icon: Container(
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: _selectedIndex == 1 ? Colors.blue.withValues(alpha: 0.1) : Colors.transparent,
+                  color: _selectedIndex == 1
+                      ? Colors.blue.withValues(alpha: 0.1)
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(Icons.folder_outlined),
@@ -114,7 +118,9 @@ class _HomePageState extends State<HomePage> {
               icon: Container(
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: _selectedIndex == 2 ? Colors.blue.withValues(alpha: 0.1) : Colors.transparent,
+                  color: _selectedIndex == 2
+                      ? Colors.blue.withValues(alpha: 0.1)
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(Icons.lightbulb_outlined),
@@ -133,7 +139,9 @@ class _HomePageState extends State<HomePage> {
               icon: Container(
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: _selectedIndex == 3 ? Colors.blue.withValues(alpha: 0.1) : Colors.transparent,
+                  color: _selectedIndex == 3
+                      ? Colors.blue.withValues(alpha: 0.1)
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(Icons.contact_support_outlined),
@@ -167,10 +175,8 @@ class HomeContent extends StatelessWidget {
   }) {
     return Card(
       elevation: 4,
-                shadowColor: Colors.blue.withValues(alpha: 0.2),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shadowColor: Colors.blue.withValues(alpha: 0.2),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(16),
@@ -184,11 +190,7 @@ class HomeContent extends StatelessWidget {
                   color: iconColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(
-                  icon,
-                  size: 24,
-                  color: iconColor,
-                ),
+                child: Icon(icon, size: 24, color: iconColor),
               ),
               SizedBox(width: 16),
               Expanded(
@@ -342,11 +344,24 @@ class HomeContent extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => NotificationScreen()),
+                      MaterialPageRoute(
+                        builder: (context) => NotificationScreen(),
+                      ),
                     );
                   },
                 ),
+                SizedBox(height: 12),
 
+                _buildMenuCard(
+                  title: "Quem está usando o laboratório?",
+                  subtitle:
+                      "escaneie o qr code presente ao lado da porta do laboratório e descubra!",
+                  icon: Icons.computer,
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => LerQrCode()));
+                  },
+                  iconColor: Colors.green,
+                ),
                 SizedBox(height: 32),
               ],
             ),
@@ -369,11 +384,7 @@ class SugestaoPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.lightbulb,
-              size: 80,
-              color: Colors.blue,
-            ),
+            Icon(Icons.lightbulb, size: 80, color: Colors.blue),
             SizedBox(height: 20),
             Text(
               'Sugestões',
@@ -386,10 +397,7 @@ class SugestaoPage extends StatelessWidget {
             SizedBox(height: 12),
             Text(
               'Compartilhe suas ideias e sugestões para melhorar a plataforma',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey.shade600,
-              ),
+              style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 24),
@@ -435,11 +443,7 @@ class ContatoPage extends StatelessWidget {
           Center(
             child: Column(
               children: [
-                Icon(
-                  Icons.contact_support,
-                  size: 80,
-                  color: Colors.blue,
-                ),
+                Icon(Icons.contact_support, size: 80, color: Colors.blue),
                 SizedBox(height: 20),
                 Text(
                   'Entre em Contato',
@@ -452,10 +456,7 @@ class ContatoPage extends StatelessWidget {
                 SizedBox(height: 12),
                 Text(
                   'Estamos aqui para ajudar você',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey.shade600,
-                  ),
+                  style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
                 ),
               ],
             ),
