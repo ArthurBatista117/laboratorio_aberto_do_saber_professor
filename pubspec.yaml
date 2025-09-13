@@ -1,0 +1,26 @@
+name: laboratorio_aberto_do_saber_professor
+description: A sample command-line application.
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: ^3.8.2
+
+# Add regular dependencies here.
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.5.0
+  mobile_scanner: ^7.0.1
+  mask_text_input_formatter: ^2.9.0
+  url_launcher: ^6.3.2
+  alarm: ^5.1.4
+  shared_preferences: ^2.5.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
