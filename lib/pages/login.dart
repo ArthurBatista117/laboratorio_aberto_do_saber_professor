@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:laboratorio_aberto_do_saber_professor/pages/cadastro.dart';
+
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -361,14 +363,7 @@ class _LoginState extends State<Login> {
                         height: 56,
                         child: OutlinedButton(
                           onPressed: () {
-                            // Navegar para página de cadastro
-                            // Navigator.pushNamed(context, '/cadastro');
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text('Navegar para página de cadastro'),
-                                backgroundColor: Colors.blue,
-                              ),
-                            );
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Cadastro()));
                           },
                           style: OutlinedButton.styleFrom(
                             foregroundColor: Colors.blue,

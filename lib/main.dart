@@ -25,7 +25,7 @@ class MainApp extends StatelessWidget {
           centerTitle: true
         ),
       ),
-      home: HomePage(),
+      home: HomePageNaoLogado(),
     );
   }
 }
